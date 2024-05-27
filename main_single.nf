@@ -48,7 +48,7 @@ workflow {
     rsem_iso = rsem_ch.map {[it[1]]}
     all_rsem_iso = rsem_iso.collect()
     all_rsem_gene = rsem_gene.collect()
-    Merge_count(all_rsem_iso,all_rsem_gene) If you don't want to merge files You can close this line.
+    Merge_count(all_rsem_iso,all_rsem_gene) // If you don't want to merge files You can close this line.
     
     
 }
