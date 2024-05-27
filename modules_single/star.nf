@@ -1,7 +1,7 @@
 
 process STAR_INDEX {
 
-    cpus 12
+    cpus 12 // You can change the thread with this line.
 
     publishDir "$params.outindex", mode: 'copy'
     tag {reference}
@@ -22,7 +22,7 @@ process STAR_INDEX {
 
 process STAR {
 
-    cpus 12
+    cpus 12 // You can change the thread with this line.
     tag {reads}
 
     publishDir "$params.outdir/STAR_results", mode: 'copy'
