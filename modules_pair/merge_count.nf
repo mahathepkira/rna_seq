@@ -8,8 +8,8 @@ process Merge_count {
     
     script:
     """
-    bash /data/home/lattapol/casava_project/Nextflow/single/scripts/merge_count-isofrom.sh
-    bash /data/home/lattapol/casava_project/Nextflow/single/scripts/merge_count-gene.sh
+    bash /data/home/scripts/merge_count-isofrom.sh
+    bash /data/home/scripts/merge_count-gene.sh
     """
 
 } 
