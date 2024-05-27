@@ -4,7 +4,7 @@ process Fastp {
     publishDir "$params.outdir/Fastp_results", pattern: '*_q20.cutadap.gz'
     publishDir "$params.outdir/Fastp_results/json", pattern: '*.json'
     publishDir "$params.outdir/Fastp_results/html", pattern: '*.html'
-    cpus 12
+    cpus 12 // You can change the thread with this line.
     tag {sample_name}
 
     input:
@@ -22,7 +22,7 @@ process Fastp {
           --qualified_quality_phred 20 \
           --detect_adapter_for_pe \
           --trim_poly_g --trim_poly_x \
-          --adapter_sequence AGATCGGAAGAG \
+          --adapter_sequence AGATCGGAAGAG \  # You can change the adapter with this line.
           --html ${sample_name}_q20.cutadap.gz.html \
           --json ${sample_name}_q20.cutadap.gz.json \
           --thread $task.cpus
