@@ -15,6 +15,7 @@ process STAR_INDEX {
 
     script:
     """
+    # You set the sjdbOverhang parameter as appropriate for your data ( It will be the longest reads - 1). You can find more information in the STAR manual.
     STAR --runThreadN $task.cpus --runMode genomeGenerate --genomeDir STAR_index --genomeFastaFiles $reference --sjdbGTFfile $gtf --sjdbOverhang 74
     """
 
