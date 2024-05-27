@@ -15,7 +15,7 @@ process Fastp {
 
     script:
     """
-    fastp -i $reads -o "$reads".q20.cutadap.gz -q 20 --adapter_sequence AGATCGGAAGAG \
+    fastp -i $reads -o "$reads".q20.cutadap.gz -q 20 --adapter_sequence AGATCGGAAGAG \ # You can change the adapter with this line.
     --html "$reads".q20.cutadap.gz.html --json "$reads".q20.cutadap.gz.json --thread $task.cpus
     
     """
