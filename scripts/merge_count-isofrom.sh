@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the folder path containing the data files
-folder_path="/data/home/lattapol/casava_project/Nextflow/pair/results10w/RSEM_results"
+folder_path="/data/home/results/RSEM_results"
 
 # Create a temporary directory for intermediate files
 temp_count_dir=$(mktemp -d)
