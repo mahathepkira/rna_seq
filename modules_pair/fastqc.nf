@@ -4,7 +4,7 @@ process FastQC_befor {
     
     publishDir "$params.outdir/FastQC_results", mode: 'copy'
     tag {sample_name}
-    cpus 12
+    cpus 12 // You can change the thread with this line.
 
 
     input:
@@ -28,7 +28,7 @@ process FastQC_after {
     
     publishDir "$params.outdir/FastQC_results", mode: 'copy'
     tag {sample_name}
-    cpus 12
+    cpus 12 // You can change the thread with this line.
 
 
     input:
