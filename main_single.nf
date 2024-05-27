@@ -1,19 +1,17 @@
-params.reads = "/data/home/lattapol/casava_project/Nextflow/single/rawdataS73-S75/**fastq.gz"
-params.reference = "/data/home/lattapol/casava_project/Nextflow/single/ref/M.esculenta_v8_genomic.fna"
-params.gtf = "/data/home/lattapol/casava_project/Nextflow/single/ref/M.esculenta_v8_genomic_new.gtf"
-params.outdir = "/data/home/lattapol/casava_project/Nextflow/single/test-10_resultsS73-S75"
-params.outindex = "index"
-params.counts = "/data/home/lattapol/casava_project/Nextflow/single/results/RSEM_results"
-params.star_index = "/data/home/lattapol/casava_project/Nextflow/single/the_index/STAR_index"
-params.rsem_index = "/data/home/lattapol/casava_project/Nextflow/single/the_index/RSEM_index"
+params.reads = "/data/home/project/Nextflow/rawdata/**fastq.gz"            // directory for fastq single-end.
+params.reference = "/data/home/project/Nextflow/reference/Reference.fna"  // directory for fasta file.
+params.gtf = "/data/home/project/Nextflow/reference/Reference.gtf"       // directory for gtf file.
+params.outdir = "/data/home/project/Nextflow/results"                   //  directory for output.
+params.outindex = "index"                                              //  directory for index.
 
-include { Fastp } from './modules/fastp.nf'
-include { FastQC as FastQC_one } from './modules/fastqc.nf'
-include { FastQC as FastQC_two } from './modules/fastqc.nf'
-include { STAR_INDEX; STAR } from './modules/star.nf'
-include { Qualimap } from './modules/qualimap.nf'
-include { RSEM_INDEX; RSEM } from './modules/rsem.nf'
-include { Merge_count } from './modules/merge_count.nf'
+
+include { Fastp } from './modules_single/fastp.nf'
+include { FastQC as FastQC_befor } from './modules_single/fastqc.nf'
+include { FastQC as FastQC_after } from './modules_single/fastqc.nf'
+include { STAR_INDEX; STAR } from './modules_single/star.nf'
+include { Qualimap } from './modules_single/qualimap.nf'
+include { RSEM_INDEX; RSEM } from './modules_single/rsem.nf'
+include { Merge_count } from './modules_single/merge_count.nf'
 
 
 
@@ -46,11 +44,11 @@ workflow {
     rsem_index_ch = RSEM_INDEX(ref_ch,gtf_ch)
     bam_new = bam_two.combine(rsem_index_ch)
     rsem_ch = RSEM(bam_new)
-    // rsem_gene = rsem_ch.map {[it[0]]}
-    // rsem_iso = rsem_ch.map {[it[1]]}
-    // rsem_gene.view()
-    // all_rsem = rsem_gene.collect()
-    // all_rsem.view()
+    rsem_gene = rsem_ch.map {[it[0]]}
+    rsem_iso = rsem_ch.map {[it[1]]}
+    all_rsem_iso = rsem_iso.collect()
+    all_rsem_gene = rsem_gene.collect()
+    Merge_count(all_rsem_iso,all_rsem_gene) If you don't want to merge files You can close this line.
     
     
 }
