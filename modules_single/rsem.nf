@@ -1,7 +1,7 @@
 
 process RSEM_INDEX {
     
-    cpus 12
+    cpus 12 // You can change the thread with this line.
     publishDir "$params.outindex/RSEM_index", mode: 'copy'
     tag {reference}
 
@@ -20,7 +20,7 @@ process RSEM_INDEX {
 
 
 process RSEM {
-    cpus 12
+    cpus 12 // You can change the thread with this line.
     publishDir "$params.outdir/RSEM_results", mode: 'copy'
     tag {bam}
     
