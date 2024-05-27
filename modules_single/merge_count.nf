@@ -1,9 +1,7 @@
 
 
 process Merge_count {
-    cpus 12
-    
-    
+
     input:
     path(rsem_iso)
     path(rsem_gene)
