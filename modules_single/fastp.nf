@@ -4,7 +4,7 @@ process Fastp {
     publishDir "$params.outdir/Fastp_results", pattern: '*.q20.cutadap.gz'
     publishDir "$params.outdir/Fastp_results/json", pattern: '*.json'
     publishDir "$params.outdir/Fastp_results/html", pattern: '*.html'
-    cpus 12
+    cpus 12 // You can change the thread with this line.
     tag {reads}
 
     input:
