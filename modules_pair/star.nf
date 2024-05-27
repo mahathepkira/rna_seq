@@ -1,7 +1,7 @@
 
 process STAR_INDEX {
 
-    cpus 12
+    cpus 12 // You can change the thread with this line.
 
     publishDir "$params.outindex", mode: 'copy'
     tag {reference}
@@ -15,6 +15,7 @@ process STAR_INDEX {
 
     script:
     """
+    # You set the sjdbOverhang parameter as appropriate for your data ( It will be the longest reads - 1). You can find more information in the STAR manual.
     STAR --runThreadN $task.cpus --runMode genomeGenerate --genomeDir STAR_index --genomeFastaFiles $reference --sjdbGTFfile $gtf --sjdbOverhang 150
     """
 
@@ -22,7 +23,7 @@ process STAR_INDEX {
 
 process STAR {
 
-    cpus 12
+    cpus 12 // You can change the thread with this line.
     tag {sample_name}
 
     publishDir "$params.outdir/STAR_results", mode: 'copy'
